@@ -1,5 +1,285 @@
-\documentclass{article}
+\documentclass[10pt,a4paper,oneside]{book}
+\usepackage[a4paper,includeheadfoot,top=10mm,bottom=10mm,left=10mm,right=10mm]{geometry}
 \usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath,amsthm,amssymb,amscd,array}
+\usepackage{latexsym}
+\usepackage{multicol} % нумерция в нескольких колонках
+\usepackage{graphicx} 
+%\usepackage{pdfsync}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows,backgrounds,patterns,matrix,shapes,fit,calc,shadows,plotmarks}
+\usepackage{hyperref} % гиперссылки
+\usepackage{cmap}       % Поддержка поиска русских слов в PDF (pdflatex)
+\usepackage{indentfirst}% Красная строка в первом абзаце
+\usepackage{misccorr}
+\usepackage{arydshln} % штрихованые линии в массивах
+\usepackage{mathtools} % выравнивание в матрицах
+\usepackage{ccaption}
+\usepackage{fancyhdr}
+\usepackage{comment}
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks,
+    linkcolor={blue!50!black},
+    citecolor={blue!50!black},
+    urlcolor={red!80!black}
+}
+% цвета для ссылок
+
+\newtheorem{upr}{Упражнение}
+\newtheorem{predl}{Предложение}
+\newtheorem{komment}{Комментарий}
+\newtheorem{conj}{Гипотеза}
+\newtheorem{notation}{Обозначение}
+
+
+\theoremstyle{definition}
+\newtheorem{kit}{Кит}
+\newtheorem*{rem}{Замечание}
+\newtheorem{zad}{Задача}
+\newtheorem*{defn}{Определение}
+\newtheorem*{fact}{Факт}
+\newtheorem{thm}{Теорема}
+\newtheorem*{thmm}{Теорема}
+\newtheorem{lem}{Лемма}
+\newtheorem{cor}{Следствие}
+
+
+
+\renewcommand{\proofname}{Доказательство}
+\renewcommand{\mod}{\,\operatorname{mod}\,}
+\renewcommand{\Re}{\operatorname{Re}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mcal}[1]{\mathcal{#1}}
+\newcommand{\mb}[1]{\mathbb{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\tbf}[1]{\textbf{#1}}
+\newcommand{\ovl}{\overline}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\K}{\operatorname{K_0}}
+\newcommand{\witt}{\operatorname{W}}
+\newcommand{\gw}{\operatorname{GW}}
+\newcommand{\coh}{\operatorname{H}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\cl}{\operatorname{Cl}}
+\newcommand{\Vol}{\operatorname{Vol}}
+\newcommand\tgg{\mathop{\rm tg}\nolimits}
+\newcommand\ccup{\mathop{\cup}}
+\newcommand{\id}{\operatorname{Id}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\rk}{\operatorname{rank}}
+\DeclareMathOperator{\Coker}{Coker}
+\DeclareMathOperator{\Ker}{Ker}
+\newcommand{\im}{\operatorname{Im}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\tr}{\operatorname{Tr}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\Stab}{\operatorname{Stab}}
+\newcommand{\orb}{\operatorname{\mathcal O}}
+\newcommand{\Fix}{\operatorname{Fix}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Inn}{\operatorname{Inn}}
+\newcommand{\Out}{\operatorname{Out}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\SO}{\operatorname{SO}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\Adj}{\operatorname{Adj}}
+\newcommand{\Disc}{\operatorname{Disc}}
+\newcommand{\cnt}{\operatorname{cont}}
+
+\newcommand{\di}{\mathop{\,\scalebox{0.85}{\raisebox{-1.2pt}[0.5\height]{\vdots}}\,}}
+
+\newcommand{\ndi}{\mathop{\not\scalebox{0.85}{\raisebox{-1.2pt}[0.5\height]{\vdots}}\,}}
+\newcommand{\nequiv}{\not \equiv}
+\newcommand{\Nod}{\operatorname{\text{НОД}}}
+\newcommand{\Nok}{\operatorname{\text{НОК}}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+
+\def\llq{\textquotedblleft} 
+\def\rrq{\textquotedblright} 
+\def\exm{\noindent {\bf Примеры:}}
+
+
+\def\Cb{\ovl{C}}
+\def\ffi{\varphi}
+\def\pa{\partial}
+\def\V{\bf V}
+\def\La{\Lambda}
+\def\eps{\varepsilon}
+\def\del{\delta}
+\def\Del{\Delta}
+\def\A{\EuScript{A}}
+\def\lan{\left\langle }
+\def\ran{\right\rangle}
+\def\bar{\begin{array}}
+\def\ear{\end{array}}
+\def\beq{\begin{equation}}
+\def\eeq{\end{equation}}
+\def\thrm{\begin{thm}}
+\def\ethrm{\end{thm}}
+\def\dfn{\begin{defn}}
+\def\edfn{\end{defn}}
+\def\lm{\begin{lem}}
+\def\elm{\end{lem}}
+\def\zd{\begin{zad}}
+\def\ezd{\end{zad}}
+\def\prdl{\begin{predl}}
+\def\eprdl{\end{predl}}
+\def\crl{\begin{cor}}
+\def\ecrl{\end{cor}}
+\def\rm{\begin{rem}}
+\def\erm{\end{rem}}
+\def\fct{\begin{fact}}
+\def\efct{\end{fact}}
+\def\enm{\begin{enumerate}}
+\def\eenm{\end{enumerate}}
+\def\pmat{\begin{pmatrix}}
+\def\epmat{\end{pmatrix}}
+
+\frenchspacing
+\righthyphenmin=2
+%\usepackage{floatflt}
+\captiondelim{. }
+
+
+
+
+
 \begin{document}
-(Type your content here.)
+
+\title{Конспект. Осень 2018}
+\date{}
+\author{}
+\maketitle
+\tableofcontents
+
+\chapter{Полилинейная алгебра}
+\section{Кватернионы}
+
+Наша цель сейчас рассказать про геометрию трехмерного пространства используя при этом определённые алгебраические конструкции. А именно, ещё в XIX веке Уильям Роуэн Гамильтон стал искать аналогичную комплексным числам алгебраическую систему на трёхмерном пространстве.  
+
+Рассмотрим подпространство в алгебре матриц $M_2(\mb C)$ вида
+$$\mb H = \left\{\pmat \alpha & \beta \\ -\ovl{\beta} & \ovl{\alpha} \epmat \right\}.$$
+Базис этого пространства, как вещественного векторного пространства, состоит из матриц 
+$$ 1=\pmat 1 & 0 \\ 0& 1 \epmat, i= \pmat i & 0 \\ 0& -i \epmat, j=\pmat 0& 1 \\ -1 & 0 \epmat, k=\pmat 0 & i \\ i & 0\epmat. $$ 
+Покажем, что это вещественная подалгебра в $M_2(\mb C)$ и следовательно ассоциативное кольцо. 
+Для этого достаточно показать, что произведение базисных снова лежит в $\mb H$. Имеем $$i^2=j^2=k^2=-1 \text{ и } ij=k=-ji,$$ откуда $$ik= iij=-j=jii=-ki \text{ и } jk=-jjk=-i=-kj.$$ Таким образом $\mb H$ образует ассоциативную алгебру размерности 4 над $\mb R$.
+ 
+\dfn[Алгебра кватернионов] $\mb H$ называется алгеброй кватернионов. 
+\edfn
+Мы больше не будем думать про кватернионы как про матрицы, а будем записывать их через $i,j,k$.
+
+\zd Алгебра кватернионов не снабжается структурой $\mb C$-алгебры.
+\ezd
+
+
+
+Рассмотрим произведение двух чисто мнимых кватернионов $uv=-\lan u,v\ran+[u,v]$. Его вещественная часть совпадает с минус скалярным произведением векторов. Про мнимую часть мы поговорим отдельно.
+
+\dfn[Векторное произведение] Пусть $v,u \in \mb R^3$ два вектора. Тогда их векторным произведением называется вектор $[v,u]$.
+\edfn
+
+Если расписать в координатах $u=x_1i+x_2j+x_3k$ и  $v=y_1i+y_2j+y_3k$, то векторное произведение задаётся формулой
+
+$$[u,v]= (x_2y_3-x_3y_2)i + (x_3y_1-x_1y_3)j + (x_1y_2- x_2y_1)k= \begin{vmatrix} i& j&k \\ x_1 & x_2 & x_3 \\ y_1 & y_2 & y_3 \end{vmatrix} $$
+
+\rm Операция $(v,u) \to [v,u]$ является билинейной и антисимметричной, то есть $[u,u]=0$ и, следовательно, $[u,v]=-[v,u]$.
+\erm
+
+
+\dfn[Сопряжённый кватернион] Пусть $x= a+bi+cj+dk$ кватернион. Определим вещественную или скалярную часть $\Re x=a$ и мнимую или векторную часть $v=\Im x= bi+cj+dk$ кватерниона. Сопряжённым кватернионом называется $\ovl{x}= a-bi-cj-dk= \Re x - \Im x =a-v$. 
+\edfn
+
+\dfn[Норма кватерниона] Определим норму кватерниона как $$||x||=\sqrt{x\ovl{x}}=\sqrt{ a^2+b^2+c^2+d^2}=\sqrt{\ovl{x}x}.$$
+\edfn 
+
+
+Норма кватерниона, как и модуль комплексного числа всегда положительны для ненулевых элементов. Это позволяет заметить, что
+
+\dfn[Обратный кватернион] Если $0\neq x \in \mb H$, то $x^{-1}=\frac{\ovl{x}}{||x||^2}$. 
+\edfn
+
+Таким образом мы получили первый (и для нас единственный) пример некоммутативного кольца с делением. Такие кольца называются телами. Напоминаю, что алгебра для нас ассоциативна и с единицей. Неассоциативные алгебры представляют интерес. Например, можно взять $\mb R^3$, где в качестве умножения взято векторное произведение. Это пример неассоциативной алгебры или, точнее, алгебры Ли. Мы не будем обсуждать неассоциатные алгебры в связи с тем, что им находится применение либо внутри физических дисциплин, либо внутри самой математики. 
+
+Какие ещё свойства есть у отображения нормы? Если следовать параллели с комплексными числами, то стоит посмотреть, что происходит с нормой произведения. Для того, чтобы не обременяться вычислениями сделаем небольшой трюк и на секунду вспомним матричное представление кватернионов. Заметим, что на матричном языке, норма -- это $||x||=\sqrt{\det x}$, откуда получаем
+
+\lm[Норма мультипликативна] $||xy||=||x||||y||$. В частности, $||x^{-1}||=||x||^{-1}$.
+\elm
+
+\crl[Сумма четырёх квадратов] В любом коммутативном кольце произведение $(a^2+b^2+c^2+d^2)(e^2+f^2+g^2+h^2)$ снова есть сумма четырёх квадратов.
+\ecrl
+
+Теперь легко доказать 
+\lm Отображение $x \to \ovl{x}$ является антиизоморфизмом алгебр, то есть $\ovl{ab}=\ovl{b}\ovl{a}$.
+\proof Линейной ясна. Пусть $x,y \neq 0$. Тогда $$\frac{\ovl{y}\,\ovl{x}}{||y||^2||x||^2}=y^{-1}x^{-1}=(xy)^{-1}=\frac{\ovl{xy}}{||xy||^2}.$$
+\elm
+
+На самом деле и здесь можно было воспользоваться матричным представлением. А именно, можно заметить, что операция сопряжения совпадает на этом языке с транспонированием и сопряжением соответствующей комплексной матрицы. Вернёмся теперь к векторному произведению.
+
+
+\lm[Свойства векторного произведения] Верны следующие свойства\\
+1) Для любых $u,v \in \mb R^3$ верно $u\bot [u,v]$. Точнее $$u[u,v]= -||u||^2v+ \lan u,v\ran u$$
+2) $|| [u,v]||= ||u||||v|||\sin \ffi |$, где $\ffi$ --  это угол между $u$ и $v$.
+\elm
+\proof Для того, чтобы посчитать скалярное произведение $\lan u, [u,v]\ran$ необходимо посчитать скалярную часть $u[u,v]$. 
+$$u[u,v]= u (uv+ \lan u,v \ran)= u^2 v+ \lan u,v \ran u= -||u||^2 v+ \lan u,v \ran u$$
+Последнее выражение, очевидно, чисто векторное.
+Теперь 
+$$||[u,v]||^2= -[u,v][u,v]= (uv + \lan u,v\ran)(vu + \lan u,v\ran)= ||u||^2||v||^2+ \lan u,v\ran^2 + \lan u,v\ran (uv+vu)=||u||^2||v||^2 - \lan u,v\ran^2= ||u||^2||v||^2(1-\cos^2 \ffi)$$
+\endproof
+
+
+
+\thrm Отображение $\mb H_{1}\to \GL_3(\mb R)$ заданное по правилу $x\to (y \to xyx^{-1})$ задаёт сюръективный  гомоморфизм из группы кватернионов единичной нормы в $\SO_3(\mb R)$. Ядро этого гомоморфизма состоит из $\{\pm 1\}$. Точнее, если единичный кватернион $x$  представим в виде $x=a+bv$, то соответствующее вращение есть вращение относительно  оси $\lan v \ran$ на угол $2\ffi$, где $\cos \ffi= a$, $\sin \ffi= b$ или тождественное преобразование вслучае $v=\pm 1$.
+\ethrm
+\proof Рассмотрим преобразование $L_x \colon \mb H \to \mb H$ вида $y \to xyx^{-1}$ Прежде всего покажем, что мы получили ортогональное преобразование $\mb R^4$. Имеем
+ $$||xvx^{-1}||=||v||.$$
+Теперь заметим, что преобразование $L_x$ сохраняет на месте вектор 1 и, следовательно, его ортогональное дополнение, то есть $\mb R^3$. Таким образом $L_x$ ограничивается на $\mb R^3$. Далее, очевидно, $L_xL_y= L_{xy}$. Осталось посчитать ядро гомоморфизма и явный вид отображения $L_x$. Заметим, что если $x=a+bv$, то $L_x$ оставляет $v$ на месте. Действительно, при $b\neq 0$ 
+$$xbvx^{-1}=x(x-a)x^{-1}= x-a=bv.$$
+Вычислим угол поворота. Для этого рассмотрим нормированный вектор  $u\bot v$ и $[u,v]$, которые образуют ортонормированный базис дополнения и посчитаем $xux^{-1}$ и $x[u,v]x^{-1}$. 
+$$xux^{-1}=(a+bv)u(a-bv)= (a+bv)(au-[u,bv])=a^2u -ab[u,v]+ab[v,u]- b^2[v,[v,u]]=(a^2-b^2)u-2ab[u,v]$$
+$$x[u,v]x^{-1}=(a+bv)[u,v](a-bv)= (a[u,v]+bu)(a-bv)=a^2[u,v]+abu-ab[u,v]v-b^2uv=(a^2-b^2)[u,v]+2abu $$
+\endproof
+
+
+\zd
+Покажите, что отображение $(x,y) \to (z \to xzy^{-1})$ задаёт сюръективный гомоморфизм из декартового квадрата группы единичных кватернионов в группу $\SO_4(\mb R)$ с ядром $\{(1,1),(-1,-1)\}$.
+\ezd
+
+Обсудим теперь некоторое применение кватернионов.
+
+
+
+\section{Задачи на максимизацию}
+
+Теперь обратимся к вопросам, связанным с вещественными самосопряжёнными операторами. Для этого заметим, что с каждым самосопряжённым оператором $L$ на евклидовом пространстве можно связать билинейную симметричную  форму $\lan x,Ly\ran$ или, что эквивалентно, квадратичную форму $\lan x,Lx\ran$. Безусловно по квадратичной форме можно обратно восстановить оператор. 
+
+Рассмотрим один из вопросов, связанных с такой конструкцией, а именно, рассмотрим задачу о нахождении нормы линейного оператора $L \colon U \to V$ между двумя евклидовыми пространствами. Для того, чтобы найти  норму необходимо найти $$\max_{x\neq 0}\sqrt{\frac{\lan Lx,Lx\ran}{\|x\|^2}}=\sqrt{\max_{x\neq 0}\frac{\lan L^*Lx,x\ran}{\|x\|^2}}=\sqrt{\max_{\|x\|=1} \frac{\lan L^*Lx,x\ran}{\|x\|^2}}.$$
+Таким образом, нахождение нормы оператора свелось к задаче максимизации квадратичной формы на единичной сфере. Заметим, что максимум действительно достигается благодаря компактности сферы.
+
+Оказывается, что довольно легко найти максимум или минимум квадратичной формы на сфере.
+
+
+
+\thrm Пусть $V$ -- евклидово пространство, $A$ -- самосопряжённый оператор на $V$, а $q(x)=\lan x,Ax\ran$ -- соответствующая квадратичная форма. Тогда 
+$$\max_{ x\in V } \frac{q(x)}{||x||^2}=\max_{\substack{ x\in V \\ ||x||=1}} q(x)=\lambda_1,$$
+ где $\lambda_1$ - наибольшее собственное число оператора $A$ и достигается на собственном векторе $v_1$, соответствующему $\lambda_1$. Аналогично минимум равен минимальному собственному числу $A$. 
+\proof
+Пусть $v=\sum c_i e_i$, причём $1=||v||^2=\sum c_i^2$. Тогда $\lan Av,v\ran = \sum c^2_i \lambda_i $, что меньше $\lan A e_1,e_1\ran= \lambda_1= \sum \lambda_1 c_i^2$.
+\endproof
+\ethrm
+
+Эта теорема, кроме, собственно, решения задачи, даёт геометрическую характеризацию первого собственного числа. Вопрос: можно ли аналогично охарактеризовать другие собственные числа? Ответ получается не таким простым, но, тем не менее, полезным.
+
+
 \end{document}
